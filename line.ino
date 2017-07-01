@@ -43,11 +43,11 @@ void loop() {
   int final_lineCenter = sparki.lineCenter(); // measure the center IR sensor
   int final_lineRight  = sparki.lineRight();  // measure the right IR sensor
   
-  int final_lineDiff = (int)((float)(final_lineRight - final_lineLeft)); // take derivative of cross track error
+  int final_lineDiff = (int)((float)(final_lineRight - final_lineLeft)); // calculate second cross track error after .1 sec
 
-  int diffDeriv = (int)((float)(final_lineDiff - lineDiff)); // integrate the rate of change
+  int diffDeriv = (int)((float)(final_lineDiff - lineDiff)); // take derivative of cross track error
 
-  diffIntgrl += diffDeriv;
+  diffIntgrl += diffDeriv; // integrate the rate of change
 
   if (diffIntgrl >= 100 ) // limit integral value to prevent windup
   { 
